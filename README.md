@@ -1,272 +1,311 @@
-# 🚀 VibeCober
+# VibeCober 🚀
 
-**AI-powered project generator** that turns an idea into a real, runnable codebase in seconds.
+**AI-Powered Project Generator with Multi-Agent Architecture**
 
-> Local AI. Zero API cost. Production-ready templates.
+Transform ideas into production-ready code using an intelligent agent pipeline.
 
----
-
-## 🧠 What is VibeCober?
-
-VibeCober is an **AI-powered project generator** that takes a simple idea like:
-
-> "Build a SaaS task management app"
-
-…and automatically:
-
-- 🧠 **Analyzes** the idea using local AI
-- 🏗️ **Decides** architecture, tech stack, and modules
-- 📁 **Generates** a complete project structure
-- 💾 **Creates** real files on disk
-- ▶️ **Produces** a runnable backend & frontend
-
-**This is not a code snippet generator.**
-**This is a real project scaffolding engine.**
+```bash
+python cli.py generate "SaaS blog with authentication" --production --build
+```
 
 ---
 
-## ❓ Why VibeCober?
+## ✨ What VibeCober Does
 
-Most AI tools today:
-- ❌ Output text or JSON
-- ❌ Break during setup
-- ❌ Depend on expensive cloud APIs
-- ❌ Are demos, not foundations
+VibeCober is an **agentic software factory** that generates complete backend projects from a single idea:
 
-**VibeCober is different.**
+| What You Say | What You Get |
+|--------------|--------------|
+| "Build a todo app" | SQLAlchemy models, FastAPI routes, tests |
+| "SaaS with auth and payments" | Full auth system, JWT, database schema, Docker config |
+| "API for a blog" | CRUD endpoints, user management, pytest suite |
 
-### 🔥 What makes it special
-
-| Feature | VibeCober |
-|---------|-----------|
-| Real runnable code | ✅ (not just text) |
-| Local AI | ✅ Ollama + Mistral (free, private, fast) |
-| Multi-agent architecture | ✅ |
-| Safe fallback system | ✅ (never breaks) |
-| CLI-first experience | ✅ |
-| Production templates | ✅ |
+**One command. Production-ready output.**
 
 ---
 
-## 🧩 How It Works
+## 🧠 The Brain Behind It
 
-VibeCober uses a **multi-agent pipeline**:
+VibeCober uses a **Team Lead Brain** to decide which agents run:
 
 ```
 User Idea
-   ↓
-Planner Agent (AI-powered)
-   ↓
-Coder Agent (structure & templates)
-   ↓
-Project Builder (writes files to disk)
+    ↓
+Team Lead Brain (decides agents)
+    ↓
+Orchestrator (executes plan)
+    ↓
+Generated Project
 ```
 
-- **AI decides** what to build
-- **Templates decide** how it's built
+### Agent Stack
 
-This keeps output clean, safe, and reliable.
-
----
-
-## 🏗️ Architecture Overview
-
-```
-vibecober/
-├── cli.py                          # CLI entry point
-├── backend/
-│   ├── main.py                     # FastAPI app
-│   ├── api/generate.py             # /generate/project endpoint
-│   ├── agents/
-│   │   ├── planner.py              # AI-powered planner
-│   │   └── coder.py                # Structure generator
-│   ├── core/
-│   │   ├── orchestrator.py         # Agent pipeline
-│   │   └── llm_client.py           # Ollama interface
-│   ├── generator/
-│   │   └── project_builder.py      # File system writer
-│   └── templates/
-│       └── code_templates.py       # Professional starter code
-```
+| Agent | Purpose | Output |
+|-------|---------|--------|
+| **Team Lead Brain** | Decides execution plan | JSON agent list |
+| **Planner** | Architecture decisions | Tech stack, modules |
+| **DB Schema** | Database design | SQLAlchemy models |
+| **Auth** | Authentication system | JWT, routes, security |
+| **Coder** | Project structure | Files and folders |
+| **Tester** | Test generation | pytest suite |
+| **Deployer** | Deployment config | Docker, compose, Makefile |
 
 ---
 
 ## 🚀 Quick Start
 
-### 1️⃣ Clone the repository
-
-```bash
-git clone https://github.com/your-username/vibecober.git
-cd vibecober
-```
-
-### 2️⃣ Install dependencies
+### 1. Install Dependencies
 
 ```bash
 pip install -r backend/requirements.txt
 ```
 
-### 3️⃣ Install Ollama + Mistral (for AI)
+### 2. Generate a Project
 
 ```bash
-# Install Ollama from https://ollama.com/download
-ollama pull mistral
+# Simple prototype
+python cli.py generate "todo app" --simple
+
+# Full development
+python cli.py generate "blog with auth" --full --build
+
+# Production-ready
+python cli.py generate "SaaS with payments" --production --build
 ```
 
-### 4️⃣ Run the API (optional)
+### 3. Run Generated Project
 
 ```bash
-uvicorn backend.main:app --reload
-```
-
-Open:
-- 👉 http://127.0.0.1:8000
-- 👉 http://127.0.0.1:8000/docs
-
-### 5️⃣ Generate a project via CLI
-
-**Preview** (no files created):
-```bash
-python cli.py "Build a SaaS task management app"
-```
-
-**Build real files**:
-```bash
-python cli.py "Build a SaaS task management app" --build
-```
-
-**Custom output directory**:
-```bash
-python cli.py "E-commerce platform" --build --output ./my-projects
+cd output/
+docker-compose up --build
 ```
 
 ---
 
-## ▶️ Run the Generated Project
-
-### Backend
+## 📋 CLI Usage
 
 ```bash
-cd output/my_project/backend
-pip install -r requirements.txt
-uvicorn main:app --reload
+python cli.py generate "your idea" [options]
 ```
 
-Endpoints:
-- `GET /` → status
-- `GET /api/health` → health check
+### Mode Flags
 
-### Frontend
+| Flag | Description | Agents Used |
+|------|-------------|-------------|
+| `--simple` | Minimal output | Planner, Coder |
+| `--full` | Standard generation (default) | Planner, DB, Auth, Coder |
+| `--production` | Full stack with tests & deploy | All 7 agents |
+
+### Additional Flags
+
+| Flag | Description |
+|------|-------------|
+| `--build` | Write files to disk |
+| `--output ./path` | Custom output directory |
+| `--skip-tests` | Skip test generation |
+| `--no-docker` | Skip Docker files |
+| `--v1` | Use legacy pipeline |
+
+### Examples
 
 ```bash
-cd output/my_project/frontend
-npm install
-npm run dev
+# Quick prototype
+python cli.py generate "weather app" --simple
+
+# Blog with auth (no Docker)
+python cli.py generate "blog with users" --full --no-docker --build
+
+# Production SaaS
+python cli.py generate "SaaS invoicing app with auth" --production --build --output ./my-saas
 ```
 
 ---
 
-## ⚠️ Windows Users (Important)
+## 🎯 Example Output
 
-If `npm install` fails due to PowerShell policy, run **once**:
-
-```powershell
-Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser
-```
-
-Then retry:
+**Command:**
 ```bash
-npm install
-npm run dev
+python cli.py generate "blog with authentication and comments" --production
 ```
 
-> This is a system setting, not a VibeCober bug.
+**Output:**
+```
+>>> VibeCober generating project
+    Idea: "blog with authentication and comments"
+    Mode: PRODUCTION
+    Pipeline: v2 (Team Lead Brain)
+============================================================
+
+[EXECUTION PLAN]
+   Project Type: crud
+   Complexity: medium
+   Agents: planner, db_schema, auth, coder, tester, deployer
+
+[ARCHITECTURE]
+   Backend: FastAPI
+   Frontend: React
+   Database: PostgreSQL
+   Modules: authentication, users, posts, comments
+
+[DATABASE SCHEMA]
+   Tables: 3
+     - users (7 columns)
+     - posts (7 columns)
+     - comments (6 columns)
+
+[AUTHENTICATION]
+   Strategy: jwt
+   Routes: register, login, me
+   Files: 5
+
+[TESTS]
+   Framework: pytest
+   Test suites: health, auth
+   Files: 4
+
+[DEPLOYMENT]
+   Strategy: Docker
+   Files: 8
+
+[PROJECT STRUCTURE]
+   [DIR] backend/
+      [DIR] app/
+         [FILE] main.py
+         [FILE] database.py
+         [DIR] models/
+         [DIR] routes/
+         [DIR] auth/
+      [DIR] tests/
+   [FILE] Dockerfile
+   [FILE] docker-compose.yml
+   [FILE] requirements.txt
+```
 
 ---
 
-## 🤖 AI Integration
+## 📁 Generated Project Structure
 
-| Setting | Value |
-|---------|-------|
-| AI Runtime | Ollama (local) |
-| Model | Mistral 7B |
-| Cost | ₹0 (no cloud APIs) |
-| Privacy | 100% local |
-
-If AI fails or returns invalid output →
-✅ VibeCober automatically falls back to a safe default architecture.
-
----
-
-## 📊 Example AI Outputs
-
-| Input Idea | Generated Modules |
-|------------|-------------------|
-| E-commerce with payments | auth, products, cart, checkout, orders, admin, payments |
-| SaaS project management | auth, user_management, teams, billing |
-| Healthcare booking | auth, appointments, doctors, patients |
-| Task management app | tasks, assignments, tracking, notifications |
-
----
-
-## 🆚 Comparison
-
-| Feature | Typical AI Tools | VibeCober |
-|---------|------------------|-----------|
-| Output | Text / JSON | Real runnable code |
-| Backend | ❌ | FastAPI + CORS |
-| Frontend | ❌ | React + Vite |
-| Styling | ❌ | Dark theme UI |
-| AI | Cloud APIs | Local (free) |
-| Reliability | Often breaks | Safe fallback |
-| CLI Tool | ❌ | ✅ |
-| File Generation | ❌ | ✅ |
+```
+output/
+├── backend/
+│   ├── app/
+│   │   ├── main.py           # FastAPI application
+│   │   ├── database.py       # SQLAlchemy setup
+│   │   ├── models/           # SQLAlchemy models
+│   │   ├── routes/           # API endpoints
+│   │   └── auth/
+│   │       ├── security.py   # Password hashing, JWT
+│   │       ├── dependencies.py # get_current_user
+│   │       └── routes.py     # /register, /login, /me
+│   └── tests/
+│       ├── conftest.py       # Fixtures
+│       ├── test_auth.py      # Auth tests
+│       └── test_health.py    # Health tests
+├── Dockerfile
+├── Dockerfile.dev
+├── docker-compose.yml
+├── docker-compose.prod.yml
+├── Makefile
+├── requirements.txt
+├── .env.production
+└── DEPLOY.md
+```
 
 ---
 
-## 🧪 Test Status
+## 🐳 Running with Docker
 
-| Component | Status |
-|-----------|--------|
-| API | ✅ |
-| CLI Preview | ✅ |
-| CLI Build | ✅ |
-| File Creation | ✅ |
-| Generated Backend | ✅ |
-| Health Endpoints | ✅ |
-| AI Planner | ✅ |
-| Fallback System | ✅ |
+```bash
+cd output/
+
+# Development (with hot reload)
+docker-compose up --build
+
+# Production
+docker-compose -f docker-compose.prod.yml up -d --build
+
+# Run tests
+docker-compose run --rm api pytest
+```
+
+**Useful Makefile commands:**
+```bash
+make dev      # Start development
+make prod     # Start production
+make test     # Run tests
+make logs     # View logs
+make clean    # Clean up
+```
 
 ---
 
-## 🛣️ Roadmap
+## 🧪 Running Tests
 
-- [ ] v0.2: More agents (DB schema, routes, tests)
-- [ ] Web UI for non-CLI users
-- [ ] Project customization flags
-- [ ] Plugin system
-- [ ] Team & enterprise features
+```bash
+cd output/
+
+# Run all tests
+pytest
+
+# With verbose output
+pytest -v
+
+# Specific test file
+pytest tests/test_auth.py
+```
 
 ---
 
-## 🏁 Final Note
+## 🔧 Architecture
 
-**VibeCober is not a tutorial project.**
+### Why This Design?
 
-It is a:
-- ✅ Production-ready foundation
-- ✅ Multi-agent AI system
-- ✅ Local, reliable, extensible platform
+VibeCober follows a **deterministic agent pipeline**:
 
-If you're building developer tools,
-**this is where the future starts.**
+1. **No AI Hallucination Risk** - Templates, not generated text
+2. **Predictable Output** - Same input = same output
+3. **Production Focus** - Real code, not demos
+4. **Extensible** - Add agents without touching orchestrator
+
+### MetaGPT vs VibeCober
+
+| Aspect | MetaGPT | VibeCober |
+|--------|---------|-----------|
+| Focus | Research | Production |
+| Output | Varied | Deterministic |
+| Auth | Optional | Built-in |
+| Tests | Optional | Built-in |
+| Docker | No | Yes |
+| Complexity | High | Controlled |
+
+---
+
+## 📊 Version
+
+**v0.3.0** - Agentic Architecture Complete
+
+- ✅ Team Lead Brain
+- ✅ 7-Agent Pipeline
+- ✅ CLI with Mode Flags
+- ✅ Docker Deployment
+- ✅ Test Generation
+
+---
+
+## 🗺️ Roadmap
+
+- [ ] Frontend Agent (React/Vue generation)
+- [ ] Alembic Migrations
+- [ ] CI/CD Templates
+- [ ] Web UI Dashboard
+- [ ] Plugin System
 
 ---
 
 ## 📄 License
 
-MIT License - feel free to use, modify, and distribute.
+MIT License - Use freely, build boldly.
 
 ---
 
-**Built with 🔥 by the VibeCober team**
+**Built with discipline. Designed for developers.**
