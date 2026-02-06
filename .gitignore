@@ -35,7 +35,7 @@ generated/
 output/
 demo_*.txt
 
-# Node (for landing-page)
+# Node (for frontend)
 node_modules/
 .next/
 
