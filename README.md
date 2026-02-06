@@ -63,7 +63,7 @@ pip install -r backend/requirements.txt
 ### 1b. Install Frontend (Primary UI)
 
 ```bash
-cd frontend-1
+cd frontend
 npm install
 ```
 
@@ -96,12 +96,12 @@ docker-compose up --build
 uvicorn backend.main:app --reload --host 127.0.0.1 --port 8000
 
 # Terminal 2 (Primary web UI)
-cd frontend-1
+cd frontend
 npm run dev
 ```
 
 Notes:
-- The default helper script `start-frontend.bat` starts `frontend-1`.
+- The default helper script `start-frontend.bat` starts `frontend`.
 
 ---
 

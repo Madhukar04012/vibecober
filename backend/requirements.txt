@@ -7,3 +7,4 @@ bcrypt
 python-dotenv
 requests
 psycopg2-binary
+alembic
